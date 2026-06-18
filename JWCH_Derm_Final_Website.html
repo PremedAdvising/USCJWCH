@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USC/JWCH Dermatology Clinic — Volunteer Program</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap');
+
+    :root {
+      --navy: #0f1624;
+      --navy-mid: #1a2540;
+      --navy-light: #243050;
+      --sage: #7ec8a4;
+      --sage-soft: rgba(126,200,164,0.12);
+      --sage-mid: rgba(126,200,164,0.28);
+      --white: #ffffff;
+      --muted: #8a95a8;
+      --card-border: rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --max: 1080px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,22,36,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; gap: 1rem;
+    }
+    .brand { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.01em; }
+    .brand span { color: var(--sage); }
+    .nav-links { display: flex; gap: 1.4rem; font-size: 0.88rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--sage); }
+    .btn {
+      display: inline-block; font-weight: 700; font-size: 0.88rem;
+      border-radius: 999px; padding: 0.65rem 1.2rem;
+      background: var(--sage); color: var(--navy);
+      transition: opacity 0.15s; white-space: nowrap;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn.ghost {
+      background: transparent; color: var(--sage);
+      border: 1.5px solid var(--sage);
+    }
+    .btn.ghost:hover { background: var(--sage-soft); }
+
+    /* TICKER */
+    .ticker-wrap {
+      background: var(--sage); color: var(--navy);
+      padding: 0.6rem 0; overflow: hidden; white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-inner span {
+      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-right: 3rem;
+    }
+    .ticker-inner span::before { content: "✦  "; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.3fr 0.85fr;
+      gap: 3rem; align-items: start;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: var(--sage-soft); border: 1px solid var(--sage-mid);
+      color: var(--sage); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 999px; padding: 0.3rem 0.85rem; margin-bottom: 1.1rem;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      line-height: 1.06; letter-spacing: -0.02em;
+      margin-bottom: 1.1rem;
+    }
+    h1 em { color: var(--sage); font-style: italic; }
+    .subtitle {
+      font-size: 1.05rem; color: #b0bac8; line-height: 1.65;
+      max-width: 560px; margin-bottom: 1.8rem;
+    }
+    .actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .fine-print { font-size: 0.82rem; color: var(--muted); max-width: 540px; line-height: 1.5; }
+
+    .glance-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.4rem;
+    }
+    .glance-card h3 {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 1rem;
+    }
+    .glance-item {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--card-border);
+    }
+    .glance-item:last-child { border-bottom: none; }
+    .glance-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .glance-item p { font-size: 0.88rem; color: #9aa3b0; }
+    .glance-item strong { color: var(--white); display: block; font-size: 0.9rem; }
+
+    /* SECTIONS */
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--card-border); }
+    .section-label {
+      font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.4rem;
+    }
+    h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.3rem;
+    }
+    .card.highlight {
+      background: var(--sage-soft); border-color: var(--sage-mid);
+    }
+    .card h3 { color: var(--white); }
+    .card.highlight h3 { color: var(--sage); }
+
+    ul.dots { list-style: none; display: grid; gap: 0.45rem; margin-top: 0.6rem; }
+    ul.dots li {
+      font-size: 0.93rem; color: #b0bac8;
+      padding-left: 1.1rem; position: relative;
+    }
+    ul.dots li::before {
+      content: "→"; color: var(--sage);
+      position: absolute; left: 0; font-size: 0.8rem; top: 0.05rem;
+    }
+
+    /* SKILLS */
+    .skills-section { background: var(--navy-mid); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .skill-item {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.2rem 1.3rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .skill-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--sage); line-height: 1;
+      flex-shrink: 0; opacity: 0.7;
+    }
+    .skill-item h3 { font-size: 0.97rem; color: var(--white); margin-bottom: 0.3rem; }
+    .skill-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+
+    /* PATIENT STORIES */
+    .stories-grid {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 0.5rem;
+    }
+    .story-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-top: 2px solid var(--sage);
+      border-radius: var(--radius); padding: 1.3rem;
+    }
+    .story-card p { font-size: 0.9rem; color: #b0bac8; line-height: 1.65; }
+    .story-tag {
+      display: inline-block; margin-bottom: 0.7rem;
+      background: var(--sage-soft); border: 1px solid var(--sage-mid);
+      color: var(--sage); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      border-radius: 999px; padding: 0.2rem 0.65rem;
+    }
+
+    /* PROGRESSION */
+    .progression {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 0.5rem;
+      border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden;
+    }
+    .prog-step { padding: 1.3rem; border-right: 1px solid var(--card-border); }
+    .prog-step:last-child { border-right: none; }
+    .prog-year {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem; color: var(--sage); margin-bottom: 0.4rem; line-height: 1;
+    }
+    .prog-step h3 { font-size: 0.88rem; color: var(--muted); font-weight: 600; margin-bottom: 0.7rem; }
+
+    /* TEAM SECTION */
+    .team-section { background: var(--navy-mid); }
+    .team-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .team-copy h2 { margin-bottom: 0.8rem; }
+    .team-copy p { font-size: 0.97rem; color: #b0bac8; line-height: 1.65; margin-bottom: 0.9rem; }
+    .team-perks { display: grid; gap: 0.7rem; }
+    .perk {
+      display: flex; gap: 0.85rem; align-items: flex-start;
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; padding: 0.85rem 1rem;
+    }
+    .perk-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .perk p { font-size: 0.9rem; color: #b0bac8; }
+    .perk strong { color: var(--white); display: block; font-size: 0.93rem; margin-bottom: 0.1rem; }
+
+    /* NOT DERM */
+    .not-derm-intro { font-size: 1rem; color: #b0bac8; max-width: 680px; margin-bottom: 1.6rem; line-height: 1.65; }
+    .fields-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.4rem;
+    }
+    .field-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.1rem;
+    }
+    .field-card .field-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .field-card h3 { font-size: 0.93rem; color: var(--white); margin-bottom: 0.3rem; }
+    .field-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .rotation-callout {
+      background: var(--sage-soft); border: 1px solid var(--sage-mid);
+      border-radius: var(--radius); padding: 1.3rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .rotation-callout .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .rotation-callout p { font-size: 0.93rem; color: #a8d8bf; line-height: 1.6; }
+    .rotation-callout strong { color: var(--sage); }
+
+    /* ONBOARDING */
+    .steps {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 0.5rem;
+    }
+    .step {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); padding: 1.2rem;
+    }
+    .step-num {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--sage); color: var(--navy);
+      font-weight: 800; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .step h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+    /* FAQ */
+    .faq-list { display: grid; gap: 0.5rem; }
+    details {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    details[open] { border-color: var(--sage-mid); }
+    summary {
+      padding: 1rem 1.2rem; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; list-style: none; display: flex;
+      justify-content: space-between; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; color: var(--sage); font-size: 1.2rem; font-weight: 400;
+    }
+    details[open] summary::after { content: "−"; }
+    details p {
+      padding: 0 1.2rem 1rem; font-size: 0.92rem; color: #b0bac8; line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      border-bottom: none;
+    }
+    .cta-inner { text-align: center; padding: 1rem 0; }
+    .cta-inner h2 { margin-bottom: 0.75rem; }
+    .cta-inner p { color: #b0bac8; font-size: 1rem; max-width: 560px; margin: 0 auto 1.8rem; }
+    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.9rem; }
+    .cta-email { font-size: 0.88rem; color: var(--muted); }
+    .cta-email a { color: var(--sage); }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 0; background: var(--navy);
+      border-top: 1px solid var(--card-border);
+    }
+    footer .foot-inner {
+      display: flex; justify-content: space-between; align-items: start;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    footer strong { font-size: 0.9rem; color: var(--white); display: block; margin-bottom: 0.4rem; }
+    footer p { font-size: 0.78rem; color: var(--muted); max-width: 560px; line-height: 1.5; }
+
+    @media (max-width: 860px) {
+      .hero-grid, .team-inner, .grid-2, .grid-3, .skills-grid,
+      .fields-grid, .stories-grid { grid-template-columns: 1fr; }
+      .progression { grid-template-columns: 1fr 1fr; }
+      .prog-step:nth-child(2) { border-right: none; }
+      .prog-step:nth-child(1), .prog-step:nth-child(2) { border-bottom: 1px solid var(--card-border); }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .actions { flex-direction: column; }
+      .actions .btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">USC/JWCH <span>Derm Clinic</span></div>
+      <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#patients">Patients</a>
+        <a href="#roles">Progression</a>
+        <a href="#team">Team</a>
+        <a href="#not-derm">Any Specialty</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSedYPnxdvvhFMOvPlGwvd7rsCSdg2K8WmMrpXbpCbRGOF_5HQ/viewform?usp=send_form">Express Interest</a>
+    </nav>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>Lesion Description</span>
+    <span>Derm History-Taking</span>
+    <span>Patient Presentation</span>
+    <span>Community Medicine</span>
+    <span>Clinical Skills</span>
+    <span>Real Patients</span>
+    <span>USC Derm Network</span>
+    <span>Carpool Available</span>
+    <span>Lesion Description</span>
+    <span>Derm History-Taking</span>
+    <span>Patient Presentation</span>
+    <span>Community Medicine</span>
+    <span>Clinical Skills</span>
+    <span>Real Patients</span>
+    <span>USC Derm Network</span>
+    <span>Carpool Available</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Medical Student Volunteer Opportunity</div>
+      <h1>Real patients.<br><em>Real skills.</em><br>Real impact.</h1>
+      <p class="subtitle">The USC/JWCH Dermatology Clinic puts you in the room with patients who need care and gives you the clinical skills to actually help. Students gather histories and present to attendings. Physicians make all clinical decisions. You focus on learning.</p>
+      <div class="actions">
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSedYPnxdvvhFMOvPlGwvd7rsCSdg2K8WmMrpXbpCbRGOF_5HQ/viewform?usp=send_form">Join the Interest List</a>
+        <a class="btn ghost" href="#skills">See What You'll Learn</a>
+        <a class="btn ghost" href="#not-derm">Not interested in derm?</a>
+      </div>
+      <p class="fine-print">Open to Keck School of Medicine and UC Riverside School of Medicine students. Keck students are given priority. Participation depends on clinic approval, onboarding completion, and current capacity. 🚗 Carpool coordination available.</p>
+    </div>
+    <aside class="glance-card">
+      <h3>Clinic at a glance</h3>
+      <div class="glance-item">
+        <div class="glance-icon">📍</div>
+        <div><strong>Skid Row, Los Angeles</strong><p>Community safety-net clinic serving patients facing real barriers to specialty care</p></div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-icon">📅</div>
+        <div><strong>Once monthly</strong><p>Weekday evening, typically 5:00–8:30 PM</p></div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-icon">🍕</div>
+        <div><strong>Dinner provided</strong><p>Usually pizza while clinic runs</p></div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-icon">🅿️</div>
+        <div><strong>Free gated parking</strong><p>Details shared after selection</p></div>
+      </div>
+      <div class="glance-item">
+        <div class="glance-icon">🚗</div>
+        <div><strong>Carpool available</strong><p>We coordinate rides. No car? No problem.</p></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- PROGRESSION / ROLES -->
+<section id="roles">
+  <div class="container">
+    <div class="section-label">How it works for you</div>
+    <h2>Progressive responsibility,<br>at your own pace</h2>
+    <p style="color:#b0bac8; font-size:0.97rem; max-width:640px; margin-bottom:1.4rem; line-height:1.65;">New volunteers shadow for the first couple of sessions to get comfortable with clinic flow. When you feel ready, you start seeing patients on your own. No arbitrary timeline, no waiting until M3.</p>
+    <div class="progression">
+      <div class="prog-step">
+        <div class="prog-year">M1</div>
+        <h3>New Volunteer</h3>
+        <ul class="dots">
+          <li>Shadow residents and attendings first few sessions</li>
+          <li>Learn clinic flow and patient interaction</li>
+          <li>Take patients independently when you feel ready</li>
+          <li>Start building lesion description vocabulary</li>
+        </ul>
+      </div>
+      <div class="prog-step">
+        <div class="prog-year">M2</div>
+        <h3>Building Skills</h3>
+        <ul class="dots">
+          <li>See patients and present to attendings</li>
+          <li>Refine derm history-taking</li>
+          <li>Connect preclinical concepts to real findings</li>
+          <li>Support newer volunteers</li>
+        </ul>
+      </div>
+      <div class="prog-step">
+        <div class="prog-year">M3</div>
+        <h3>Clinical Confidence</h3>
+        <ul class="dots">
+          <li>Independent patient encounters</li>
+          <li>Support clinical reasoning discussions</li>
+          <li>Help orient junior students</li>
+          <li>Assist with clinic coordination</li>
+        </ul>
+      </div>
+      <div class="prog-step">
+        <div class="prog-year">M4</div>
+        <h3>Senior Volunteer</h3>
+        <ul class="dots">
+          <li>Mentor junior students</li>
+          <li>Model clinical excellence</li>
+          <li>Support team culture</li>
+          <li>Help maintain a welcoming learning environment</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine-print" style="margin-top:1rem; color:var(--muted);">Roles adapt to student experience, supervision, and clinic volume. More experienced students may progress faster depending on flow and attending availability.</p>
+  </div>
+</section>
+
+<!-- NOT GOING INTO DERM -->
+<section id="not-derm">
+  <div class="container">
+    <div class="section-label">Not going into dermatology?</div>
+    <h2>Derm shows up everywhere.<br>And so will these skills.</h2>
+    <p class="not-derm-intro">You do not have to want to be a dermatologist to get enormous value from this clinic. Skin findings are a window into systemic disease, and the history-taking, presentation, and clinical reasoning skills you build here apply directly to whatever specialty you choose.</p>
+    <div class="fields-grid">
+      <div class="field-card">
+        <div class="field-icon">🩺</div>
+        <h3>Internal Medicine / FM</h3>
+        <p>Skin manifestations of autoimmune disease, diabetes, and infection are everyday findings. Knowing what you are looking at matters in every outpatient visit. <a href="https://www.aafp.org/afp/topics/skin-conditions" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a></p>
+      </div>
+      <div class="field-card">
+        <div class="field-icon">👶</div>
+        <h3>Pediatrics</h3>
+        <p>Rashes are one of the most common pediatric chief complaints. Atopic dermatitis, viral exanthems, tinea. Derm fluency is core pediatric competency. <a href="https://www.aad.org/news/aad-issues-first-pediatric-atopic-dermatitis-guidelines" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a></p>
+      </div>
+      <div class="field-card">
+        <div class="field-icon">🚑</div>
+        <h3>Emergency Medicine</h3>
+        <p>Stevens-Johnson, meningococcemia, necrotizing fasciitis. EM physicians catch the derm findings no one else did. This clinic builds that eye. <a href="https://www.aafp.org/pubs/afp/issues/2010/1001/p773.html" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a></p>
+      </div>
+      <div class="field-card">
+        <div class="field-icon">🔬</div>
+        <h3>Rheumatology / Oncology</h3>
+        <p>Lupus rashes, dermatomyositis, paraneoplastic syndromes. Derm and these fields are deeply intertwined. Recognizing the findings early changes outcomes. <a href="https://dermnetnz.org/topics/cutaneous-markers-of-internal-malignancy" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a></p>
+      </div>
+      <div class="field-card">
+        <div class="field-icon">🏥</div>
+        <h3>Surgery</h3>
+        <p>Even if this clinic is not a surgical setting, dermatology gives helpful exposure to the skin as a surgical organ. You'll become more comfortable describing lesions, recognizing wounds, understanding basic skin healing, and noticing when a finding may need biopsy, excision, or procedural follow-up. These habits are useful in surgical fields where skin exams, incisions, closures, infections, and wound care are part of patient care. <a href="https://www.aafp.org/afp/2011/1101/p995" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a> <a href="https://www.facs.org/for-patients/recovering-from-surgery/home-skills-for-patients/wound-management/surgical-wound-care/" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">More on wound care ↗</a></p>
+      </div>
+      <div class="field-card">
+        <div class="field-icon">🌍</div>
+        <h3>Global &amp; Community Health</h3>
+        <p>In resource-limited settings, dermatology is often the most accessible specialty. What you learn here is globally applicable. <a href="https://www.who.int/teams/control-of-neglected-tropical-diseases/interventions/strategies/skin-ntds" target="_blank" rel="noopener" style="color:var(--sage); text-decoration:underline;">Background reading ↗</a></p>
+      </div>
+    </div>
+    <div class="rotation-callout">
+      <div class="icon">📋</div>
+      <p><strong>M1s and M2s:</strong> The patient presentation skills you build here are exactly what attendings expect on your first rotation. Walk into third year having already presented real patients to real physicians. That head start is real, and it shows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS YOU'LL GAIN -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-label">What you'll actually learn</div>
+    <h2>Clinical skills you can use<br>in every specialty</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-num">01</div>
+        <div>
+          <h3>Lesion Description</h3>
+          <p>Learn the language of dermatology: macule, papule, plaque, vesicle, pustule. Describe what you see with precision. A foundational skill every physician uses, in every specialty.</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-num">02</div>
+        <div>
+          <h3>Dermatology History-Taking</h3>
+          <p>Master the derm-specific HPI: onset, distribution, evolution, triggers, prior treatments. Structured and efficient, directly applicable to shelf exams and clinical rotations.</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-num">03</div>
+        <div>
+          <h3>Seeing Patients Independently</h3>
+          <p>Shadow your first few sessions to get comfortable with clinic flow. When you feel ready, you take patients on your own, gather the history, and bring it to the attending. Your pace, your call.</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-num">04</div>
+        <div>
+          <h3>Presenting to Attendings</h3>
+          <p>Practice your oral presentation skills in a real clinical setting. Concise, organized, supervised. The exact format you will need on every rotation, starting now.</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-num">05</div>
+        <div>
+          <h3>Clinical Reasoning</h3>
+          <p>Watch attendings and residents build differentials in real time. Connect your preclinical knowledge to what is actually in front of you and learn how physicians think through uncertainty.</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-num">06</div>
+        <div>
+          <h3>Safety-Net Medicine</h3>
+          <p>Understand how structural barriers shape dermatologic presentations and care. This context changes how you practice medicine, regardless of specialty, for the rest of your career.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATIENT STORIES -->
+<section id="patients">
+  <div class="container">
+    <div class="section-label">Why it matters</div>
+    <h2>The people we serve</h2>
+    <p style="color:#b0bac8; font-size:0.97rem; max-width:640px; margin-bottom:1.6rem; line-height:1.65;">Our patients are real people navigating real hardship. Many have gone months or years without access to specialty care. Students take histories and offer presence. Attending physicians make all clinical decisions. Together, we make sure patients feel heard and leave with a plan.</p>
+    <div class="stories-grid">
+      <div class="story-card">
+        <span class="story-tag">Scalp &amp; Hair</span>
+        <p>A patient living in a shelter comes in worried about hair loss and a scalp that has been itching and flaking for months. Without reliable shower access, managing it on their own has not been possible. You sit with them, take the history, and learn what their day-to-day looks like. The attending assesses and diagnoses. You observe the treatment plan being built around what is actually accessible for this patient's life. Before leaving, the patient says this is the first time someone has really listened to what they have been going through.</p>
+      </div>
+      <div class="story-card">
+        <span class="story-tag">Wounds &amp; Skin Breakdown</span>
+        <p>A patient has been walking miles every day in ill-fitting donated shoes. Both feet are raw and blistered, some wounds already open. You gather the history: how long, how painful, what they have tried. The attending examines and makes the clinical call on wound care. Your role is to be present, thorough, and human. For someone who has spent weeks on their feet with nowhere to rest, being carefully heard matters as much as any prescription.</p>
+      </div>
+      <div class="story-card">
+        <span class="story-tag">Skin Lesion</span>
+        <p>A patient comes in about a raised lesion on their face that has been there for a while and has started to bother them, not just physically but in how they think other people see them when they talk. You take the history: how long it has been there, whether it has changed, what they have noticed. The attending examines it and walks through the reasoning out loud, asymmetry, borders, color, growth, before deciding a biopsy is the right next step. A resident performs the biopsy while you observe the technique up close. For a patient who has been quietly self-conscious about their face for months, finally having it looked at, and the plan for an answer, means more than the visit itself.</p>
+      </div>
+      <div class="story-card">
+        <span class="story-tag">Eczema</span>
+        <p>A patient with longstanding eczema on her hands has an important occasion coming up and is self-conscious about how she looks. She has not been able to afford her prescription and has been managing with whatever she can find over the counter, which has not been enough. You take the history and hear how much this has been weighing on her. The attending examines her hands, and the clinic is able to send her home with medication at no cost. At her follow-up, she comes back with healed hands, soft, calm skin, no more cracking, and she is glowing about it. Small moments like this are why continuity in this clinic matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM BONDING -->
+<section id="team" class="team-section">
+  <div class="container team-inner">
+    <div class="team-copy">
+      <div class="section-label">The USC Derm community</div>
+      <h2>You're not just a volunteer.<br>You're part of the team.</h2>
+      <p>Working alongside attendings and residents in a small, collaborative setting builds genuine relationships. Clinic nights give you face time with people who know your name and what you care about. That is a rare thing in medical school.</p>
+    </div>
+    <div class="team-perks">
+      <div class="perk">
+        <div class="perk-icon">🤝</div>
+        <div><strong>Direct attending access</strong><p>Work alongside USC derm faculty in a small-group setting you will not find in a lecture hall.</p></div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🎓</div>
+        <div><strong>Resident mentorship</strong><p>Residents remember what it was like to be an M1. Ask anything. They are here for it.</p></div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🌐</div>
+        <div><strong>Build your network early</strong><p>Connections to USC derm faculty are valuable whether you are pursuing the specialty or not. Start building them in M1, not M4.</p></div>
+      </div>
+      <div class="perk">
+        <div class="perk-icon">🍕</div>
+        <div><strong>Real community</strong><p>Clinic nights mean shared work, shared purpose, and colleagues you will know for your whole career.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="onboarding">
+  <div class="container">
+    <div class="section-label">Getting started</div>
+    <h2>How to join</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Interest Form</h3>
+        <ul class="dots">
+          <li>Share your school, year, and availability</li>
+          <li>Takes less than 3 minutes</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Onboarding Packet</h3>
+        <ul class="dots">
+          <li>Receive required clinic forms</li>
+          <li>Submit immunization documentation</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Approval &amp; Selection</h3>
+        <ul class="dots">
+          <li>Approved volunteers contacted based on clinic needs</li>
+          <li>Waitlisted students contacted for future dates</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Clinic Details</h3>
+        <ul class="dots">
+          <li>Location, timing, parking, and carpool info shared</li>
+          <li>Show up. See patients. Learn.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">Common questions</div>
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Do I need prior dermatology experience?</summary>
+        <p>Not at all. New volunteers shadow for the first couple of sessions to get oriented, then take patients independently when they feel ready. Students gather histories and present to attendings. Physicians make all clinical decisions. The learning happens here.</p>
+      </details>
+      <details>
+        <summary>What if I am not interested in dermatology as a specialty?</summary>
+        <p>This experience is valuable regardless of your specialty interest. Lesion description, history-taking, and patient presentation are universal clinical skills. Derm findings appear in virtually every field of medicine, and the practice you get presenting to attendings here will serve you on every rotation.</p>
+      </details>
+      <details>
+        <summary>Do I need a car to get there?</summary>
+        <p>No. We coordinate carpool options for volunteers who need rides. Reach out after completing your interest form and we will connect you with other volunteers traveling from your area.</p>
+      </details>
+      <details>
+        <summary>Who is eligible to volunteer?</summary>
+        <p>The program is open to students at Keck School of Medicine (USC) and UC Riverside School of Medicine. Keck students are given priority. Participation depends on clinic approval, onboarding completion, and available capacity.</p>
+      </details>
+      <details>
+        <summary>How often does clinic run?</summary>
+        <p>Typically once per month on a weekday evening, usually 5:00–8:30 PM.</p>
+      </details>
+      <details>
+        <summary>Is parking available?</summary>
+        <p>Free parking in a gated area is typically available. Full details shared after selection. Carpool coordination also available.</p>
+      </details>
+      <details>
+        <summary>Is food provided?</summary>
+        <p>Yes, dinner is provided, usually pizza, while clinic runs.</p>
+      </details>
+      <details>
+        <summary>Does the interest form guarantee a spot?</summary>
+        <p>The interest form is the first step, not a guarantee. Clinic capacity is limited and selection depends on approval status, availability, and current needs. Waitlisted students are contacted for future clinic dates.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div class="section-label">Ready?</div>
+    <h2>Join a clinic that actually<br>teaches you something.</h2>
+    <p>Submit the interest form and take the first step toward real clinical skills, real patient relationships, and a genuine connection with the USC derm community.</p>
+    <div class="cta-actions">
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSedYPnxdvvhFMOvPlGwvd7rsCSdg2K8WmMrpXbpCbRGOF_5HQ/viewform?usp=send_form">Join the Volunteer Interest List</a>
+      <a class="btn ghost" href="mailto:jwchdermatologyclinic@gmail.com">Email Us First</a>
+    </div>
+    <p class="cta-email">Questions? <a href="mailto:jwchdermatologyclinic@gmail.com">jwchdermatologyclinic@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div>
+        <strong>USC/JWCH Dermatology Clinic Volunteer Program</strong>
+        <p>This page is maintained for volunteer recruitment and coordination purposes. It is not an official USC or JWCH website.</p>
+      </div>
+      <p style="font-size:0.78rem; color:var(--muted); max-width:400px;">Participation is subject to clinic approval, required onboarding, immunization documentation, available capacity, and current clinic policies. Details may change based on clinic needs.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
